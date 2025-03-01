@@ -1,0 +1,287 @@
+<!--  <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+<link rel="stylesheet" href="/style.css">
+<script type="text/javascript">
+    function disableBack() {
+        window.history.forward();
+    }
+    setTimeout("disableBack()", 0);
+    window.onunload = function () { null };
+</script>
+</head>
+<body>
+
+<p th:if="${param.logout}">You have been logged out successfully.</p>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="/checkdashboard">
+            <h1>ADMIN LOGIN</h1>
+            <span>or use your email for registration</span>
+            <input type="email" placeholder="UserName" name="email" />
+            <input type="password" placeholder="Password" name="password" />
+            <input type="hidden" name="loginType" value="admin" />
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="/checkdashboard">
+            <h1>EMPLOYEE LOGIN</h1>
+            <span>or use your account</span>
+            <input type="email" placeholder="UserName" name="email" />
+            <input type="password" placeholder="Password" name="password"/>
+            <input type="hidden" name="loginType" value="employee" />
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Hello, ADMIN!</h1>
+                <p>Enter The Admin details And Login to Monitor Operations</p>
+                <button class="ghost" id="signIn">EMPLOYEE</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Employee!</h1>
+                <p>Enter your personal details and Login to your Account</p>
+                <button class="ghost" id="signUp">ADMIN</button>
+            </div>
+        </div>
+    </div>
+</div>
+<p th:if="${error}" th:text="${error}"></p>
+<script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+constById('container');
+
+signUpButton.addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+});
+</script>
+
+</body>
+</html>
+
+-->
+
+  
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+<link rel="stylesheet" href="/style.css">
+<script type="text/javascript">
+    function disableBack() {
+        window.history.forward();
+    }
+    setTimeout("disableBack()", 0);
+    window.onunload = function () { null };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    });
+</script>
+
+
+
+
+<script type="text/javascript">
+    function validateForm() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        let errorMessage = "";
+
+        if (!email.includes("@")) {
+            errorMessage += "Username must contain '@'.\n";
+        }
+        if (password.length < 6) {
+            errorMessage += "Password must be at least 6 characters long.\n";
+        }
+
+        if (errorMessage) {
+            alert(errorMessage);
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+
+
+</head>
+<body>
+
+<p th:if="${param.logout}">You have been logged out successfully.</p>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="/checkdashboard">
+            <h1>ADMIN LOGIN</h1>
+            <span>or use your email for registration</span>
+            <input type="email" placeholder="UserName" name="email" />
+            <input type="password" placeholder="Password" name="password" />
+            <input type="hidden" name="loginType" value="admin" />
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="/checkdashboard">
+            <h1>EMPLOYEE LOGIN</h1>
+            <span>or use your account</span>
+            <input type="email" placeholder="UserName" name="email" />
+            <input type="password" placeholder="Password" name="password"/>
+            <input type="hidden" name="loginType" value="employee" />
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Hello, ADMIN!</h1>
+                <p>Enter The Admin details And Login to Monitor Operations</p>
+                <button class="ghost" id="signIn">EMPLOYEE</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Employee!</h1>
+                <p>Enter your personal details and Login to your Account</p>
+                <button class="ghost" id="signUp">ADMIN</button>
+            </div>
+        </div>
+    </div>
+</div>
+<p th:if="${error}" th:text="${error}"></p>
+
+</body>
+</html>
+
+<!--  
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+<link rel="stylesheet" href="/style.css">
+<script type="text/javascript">
+    function disableBack() {
+        window.history.forward();
+    }
+    setTimeout("disableBack()", 0);
+    window.onunload = function () { null };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    });
+
+    function showError(message) {
+        alert(message);
+    }
+</script>
+</head>
+<body>
+
+<p th:if="${param.logout}">You have been logged out successfully.</p>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="/checkdashboard" method="post" onsubmit="return validateForm('admin')">
+            <h1>ADMIN LOGIN</h1>
+            <span>or use your email for registration</span>
+            <input type="email" placeholder="UserName" name="email" required />
+            <input type="password" placeholder="Password" name="password" required />
+            <input type="hidden" name="loginType" value="admin" />
+            <button type="submit">Log in</button>
+        </div>
+    <div class="form-container sign-in-container">
+        <form action="/checkdashboard" method="post" onsubmit="return validateForm('employee')">
+            <h1>EMPLOYEE LOGIN</h1>
+            <span>or use your account</span>
+            <input type="email" placeholder="UserName" name="email" required />
+            <input type="password" placeholder="Password" name="password" required />
+            <input type="hidden" name="loginType" value="employee" />
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Hello, ADMIN!</h1>
+                <p>Enter The Admin details And Login to Monitor Operations</p>
+                <button class="ghost" id="signIn">EMPLOYEE</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Employee!</h1>
+                <p>Enter your personal details and Login to your Account</p>
+                <button class="ghost" id="signUp">ADMIN</button>
+            </div>
+        </div>
+    </div>
+</div>
+<p th:if="${error}" th:text="${error}"></p>
+<script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+   .add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+});
+
+function validateForm(loginType) {
+    const email = document.querySelector(`input[name="email"]`).value;
+    const password = document.querySelector(`input[name="password"]`).value;
+
+    if (!email || !password) {
+        showError("Please fill in all fields.");
+        return false;
+    }
+
+    const role = loginType === 'admin' ? 'admin' : 'employee';
+    if (role !== loginType) {
+        showError("You are not allowed to access this page.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>
+-->

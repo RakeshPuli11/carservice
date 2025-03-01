@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="Logo">
+                    <h2>PRIME<span class="danger">AUTOMOBILES</span></h2>
+                    <!-- <span class="material-icons-sharp">close</span> -->
+                    
+                </div>
+                <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          		</div>
+            </div>
+            <div class="sidebar" style="height:93vh">
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/vehicle/vehicleEntry">
+                    <span class="material-icons-sharp">person_outline</span>
+                    <h3>ADD NEW VEHICLE</h3>
+                </a>
+                <a href="/admin/vehiclelist">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>VEHICLE MANAGEMENT</h3>
+                </a>
+                <a href="/employee/addemployeeform">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>ADD NEW SERVICE ADVISOR</h3>
+                </a>
+                <a href="/admin/employeelist">
+                    <span class="material-icons-sharp">mail_outline</span>
+                    <h3>SERVICE ADVISOR MANAGEMENT</h3>
+                </a>
+                
+                <a href="/admin/vehiclehistory">
+    				<span class="material-icons-sharp">history</span>
+    				<h3>Vehicle History</h3>
+					</a>
+					
+                
+                
+                
+            
+                <a href="#" id="logout-link">
+                <span class="material-icons-sharp">logout</span>
+                <h3>Logout</h3>
+            </a>
+            
+            
+            
+					
+					
+            </div>
+        </aside>
+
+        <main>
+            <h1>VEHICLE SERVICE MANAGEMENT ADMIN DASHBOARD</h1>
+
+            <div class="insights">
+            <div th:each="status : ${statuscount}" class="expenses">
+                <span class="material-icons-sharp">bar_chart</span>
+                <div class="middle">
+                    <div class="left">
+                        <h3 th:text="${status.key}">DUE</h3>
+                        <h1 th:text="${status.value}">$14,160</h1>
+                    </div>
+                  <!--     <div class="progress">
+                        <svg>
+                            <circle cx="38" cy="38" r="36"></circle>
+                        </svg>
+                        <div class="number">
+                            <p>62%</p>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- <small class="text-muted">Last 24 hours</small> -->
+            </div>
+        
+            
+        </div>
+
+
+            <div class="recent-orders">
+                <h2>Recent Orders</h2>
+                <div class="table-container">
+                    <table id="recent-orders--table">
+                        <thead>
+                            <tr>
+                                <th>Vehicle</th>
+                                <th>Service Advisor</th>
+                                <th>BOM</th>
+                                <th>Status</th>
+                                <th>Estimated Cost</th>
+                                <th>Actual Cost</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="record : ${pendingapprovals}">
+                                <td th:text="${record.vehicle.registrationNumber}"></td>
+                                <td th:text="${record.employee.name}"></td>
+                                <td th:text="${record.billOfMaterials}"></td>
+                                <td th:text="${record.status}"></td>
+                                <td th:text="${record.vehicle.estimated_cost}"></td>
+                                <td th:text="${record.actualcost}"></td>
+                                <td>
+                                    <form th:action="@{/admin/approvebom}">
+                                        <input type="hidden" name="servicerecordid" th:value="${record.id}">
+                                        <button type="submit">Approve</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="#">Show All</a>
+                    
+                    
+                    
+                    
+                    
+                    
+                <!--    <div class="form-container">
+        <form th:action="@{/employee/checkhistory}" class="input-group">
+            <input type="text" name="registrationNumber" class="form-control" placeholder="Enter Vehicle Reg Number">
+            <button type="submit" class="btn btn-primary">Check History</button>
+        </form>
+    </div>
+
+     (VEHICLE HISTORY TABLE )
+    <h3>Vehicle History</h3>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Reg Number</th>
+                <th>Warranty</th>
+                <th>Issue Description</th>
+                <th>Released Date</th>
+                <th>Previous Advisor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vh : ${vehiclehistory}">
+                <td th:text="${vh.model}"></td>
+                <td th:text="${vh.registrationNumber}"></td>
+                <td th:text="${vh.warranty}"></td>
+                <td th:text="${vh.issuedescription}"></td>
+                <td th:text="${vh.ReleasedDate}"></td>
+                <td th:text="${vh.employee}"></td>
+            </tr>
+        </tbody>
+    </table>   --> 
+    
+    
+    
+    
+    
+                </div>
+            </div>
+        </main>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="floating-buttons" style="background: var(--color-white);">
+                    <div class="theme-toggler" style="background: var(--color-white);">
+                        <span class="material-icons-sharp active">light_mode</span>
+                        <span class="material-icons-sharp">dark_mode</span>
+                    </div>
+                    <div class="profile" style="background: var(--color-white);">
+                        <div class="info">
+                            <p>Hey, <b class="danger">Rohith</b></p>
+                            
+                            <small class="text-muted">Admin</small>
+                        </div>
+                        <div class="profile-photo">
+                            <img src="/images/profile-1.jpg" alt="Profile Picture"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+<form id="logout-form" th:action="@{/logout}" method="post" style="display: none;">
+    <button type="submit">Logout</button>
+</form>
+<script>
+    document.getElementById('logout-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('logout-form').submit();
+    });
+    
+    
+   
+</script>
+    <script src="/constants/recent-order-data.js"></script>
+    <script src="/constants/update-data.js"></script>
+    <script src="/constants/sales-analytics-data.js"></script>
+    <script src="/index1.js"></script>
+    </div>
+</body>
+</html>

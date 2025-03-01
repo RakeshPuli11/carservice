@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update Vehicle Information</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+    }
+    h2 {
+        color: #333;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px 15px;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+    button:hover {
+        background: #555;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <button onclick="history.go(-1)">Back</button>
+    <h2>Update Vehicle Information</h2>
+    <form th:action="@{/vehicle/updateVehicleinfo}" method="post">
+        <label for="id">Customer ID:</label>
+        <input type="text" name="id" id="id" th:value="${vehicle.id}" required readonly>
+        
+        <label for="name">Customer Name:</label>
+        <input type="text" name="name" id="name" th:value="${vehicle.customerName}" required>
+        
+        <label for="contact">Customer Contact:</label>
+        <input type="number" name="contact" id="contact" th:value="${vehicle.customerContact}" required>
+        
+        <label for="registrationNumber">Registration Number:</label>
+        <input type="text" name="registrationNumber" id="registrationNumber" th:value="${vehicle.registrationNumber}" required>
+        
+        <label for="model">Model:</label>
+        <input type="text" id="model" th:value="${vehicle.model}" required readonly>
+        
+        <label for="warranty">Warranty:</label>
+        <select name="warranty" id="warranty" th:value="${vehicle.warranty}">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        
+        <button type="submit">Update Existing Data</button>
+    </form>
+</div>
+</body>
+</html>

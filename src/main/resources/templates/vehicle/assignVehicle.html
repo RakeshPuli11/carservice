@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Vehicle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+<button onclick="history.go(-1)">Back </button>
+
+<div class="container">
+    <h2>Assign Vehicle to Employee</h2>
+    <form th:action="@{/vehicle/assignvehicle}" method="post">
+        <input type="hidden" name="vehicleId" th:value="${vehicle.id}" />
+        <label for="employee">Select Employee:</label>
+        <select name="employeeId" id="employee">
+            <th:block th:each="employee : ${availableEmployees}">
+                <option th:value="${employee.id}" th:text="${employee.name} + ' - ' + ${employee.availablity}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Assign Vehicle</button>
+    </form>
+</div>
+
+</body>
+</html>
